@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Count from './Count'
+import axios from 'axios'
 
-function App() {
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [data, setData] = useState([])
+
+
+
+  const fetchos = async () => {
+    const result = await axios('https://restcountries.eu/rest/v2/all');
+    setData(result.data);
+  }
+
+  useEffect(() => {
+    fetchos()
+  })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <Count count={count} setCount={setCount} />
+     <div>
+
+     </div>
+     {
+       data.map(x=> { 
+         console.log(x) 
+         return <div>
+           <span>
+            <img src={x.flag} style={{width: 50}} alt="Logo" />
+           </span>
+           <span>
+            <b>{x.name}</b> ({x.nativeName}) / capital: <b>{x.capital}</b>/ gini: <b>{x.gini}</b> / population: <b>{x.population}</b>
+           </span>
+         </div>
+        })
+     }
     </div>
   );
 }
 
-export default App;
+export default App
