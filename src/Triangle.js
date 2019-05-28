@@ -1,5 +1,7 @@
 import React from 'react'
 import { Spring, animated, interpolate } from 'react-spring/renderprops'
+import GridPortfolio from './GridPortfolio'
+import List from './List'
 
 const TRIANGLE = 'M20,380 L380,380 L380,380 L200,20 L20,380 Z'
 const RECTANGLE = 'M20,20 L20,380 L380,380 L380,20 L20,20 Z'
@@ -39,8 +41,10 @@ export default class Triangle extends React.Component {
     return (
       <Spring
         native
-        from={{ fill: 'black' }}
+        from={{ fill: 'black', top: 500 }}
         to={{
+          opacity: toggle ? '0' : '1',
+          top: toggle ? '500' : '0',
           marginRight: toggle ? '0%' : '60%',
           fill: toggle ? '#247BA0' : '#abe4ff',
           backgroundColor: toggle ? '#A29B7F' : '#F3FFBD',
@@ -50,7 +54,8 @@ export default class Triangle extends React.Component {
         }}
         toggle={this.toggle}
         onRest={() => console.log('done')}>
-        {({ toggle, backgroundColor, fill, rotate, scale, shape, marginRight }) => (
+        {({ toggle, backgroundColor, fill, rotate, scale, shape, marginRight, opacity, top }) => (
+          <div style={{position:'relative'}}>
           <animated.div style={{ ...styles.container, backgroundColor }}>
             <animated.svg
               style={{
@@ -74,6 +79,11 @@ export default class Triangle extends React.Component {
               </g>
             </animated.svg>
           </animated.div>
+          <animated.div style={{ position: 'absolute', opacity, top, left: '40%' }}>
+            <List list={this.props.list} />
+          </animated.div>
+          </div>
+
         )}
       </Spring>
     )
