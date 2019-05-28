@@ -3,6 +3,8 @@ import axios from 'axios'
 import Header from './Header'
 import Menu from './Menu'
 import List from './List'
+import Triangle from './Triangle'
+import GridPortfolio from './GridPortfolio'
 
 
 const App = () => {
@@ -23,9 +25,9 @@ const App = () => {
 
   return (
     <div>
-      <Header />
-      <Menu />
-      <List list={list} />
+      <Triangle />
+      {/* <List list={list} /> */}
+     <GridPortfolio /> 
     </div>
   );
 }

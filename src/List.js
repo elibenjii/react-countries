@@ -8,7 +8,7 @@ const List = ({
   return (
     <div className='listContainer'>
      {
-       list.map(x=> <ListItem info={x} />)
+       list.map((x, index)=> index< 10 &&  <ListItem key={x.country} info={x} />)
      }
     </div>
   );

@@ -38,6 +38,9 @@ code {
 }
 
 .itemInfoContainer {
-  flex: 6;
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+  justify-content: space-around;
   cursor: pointer;
 }
