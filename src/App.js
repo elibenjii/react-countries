@@ -1,42 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import Count from './Count'
 import axios from 'axios'
+import Header from './Header'
+import Menu from './Menu'
+import List from './List'
+
 
 const App = () => {
   const [count, setCount] = useState(0);
-  const [data, setData] = useState([])
+  const [list, setList] = useState([])
 
 
 
-  const fetchos = async () => {
+  const _getList = async () => {
     const result = await axios('https://restcountries.eu/rest/v2/all');
-    setData(result.data);
+    setList(result.data);
   }
 
   useEffect(() => {
-    fetchos()
+    _getList()
   })
 
 
   return (
     <div>
-     <Count count={count} setCount={setCount} />
-     <div>
-
-     </div>
-     {
-       data.map(x=> { 
-         console.log(x) 
-         return <div>
-           <span>
-            <img src={x.flag} style={{width: 50}} alt="Logo" />
-           </span>
-           <span>
-            <b>{x.name}</b> ({x.nativeName}) / capital: <b>{x.capital}</b>/ gini: <b>{x.gini}</b> / population: <b>{x.population}</b>
-           </span>
-         </div>
-        })
-     }
+      <Header />
+      <Menu />
+      <List list={list} />
     </div>
   );
 }
