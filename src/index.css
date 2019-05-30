@@ -25,6 +25,7 @@ code {
 
 .listContainer {
   padding: 30px;
+  overflow-y: scroll;
 }
 
 .itemContainer {

@@ -6,10 +6,19 @@ const List = ({
   list
 }) => {
   return (
-    <div className='listContainer'>
+    <div>
+      <div style={{backgroundColor: '#163f5f', height: '75px'}}>
+        <div style={{fontSize: 30, color: 'white', fontWeight: 'bold', padding: 10 }}>
+          Page:
+        </div>
+      </div>
+    
+    <div className='listContainer' style={{height: window.innerHeight-75, backgroundColor: 'white'}}>
+
      {
-       list.map((x, index)=> index< 20 &&  <ListItem key={x.name} info={x} />)
+       list.map((x, index)=> index< 20 &&  <ListItem key={x.name} style={{backgroundColor: 'white'}} info={x} />)
      }
+    </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Spring, animated, interpolate } from 'react-spring/renderprops'
 import GridPortfolio from './GridPortfolio'
 import List from './List'
+import { PropTypes } from 'prop-types';
 
 const TRIANGLE = 'M20,380 L380,380 L380,380 L200,20 L20,380 Z'
 const RECTANGLE = 'M20,20 L20,380 L380,380 L380,20 L20,20 Z'
@@ -13,12 +14,23 @@ const styles = {
     alignItems: 'center',
     willChange: 'background',
   },
-  shape: { width: 500, height: 500, willChange: 'transform' },
+  shape: { width: window.innerWidth	, height: window.innerHeight	, willChange: 'transform' },
 }
 
 export default class Triangle extends React.Component {
-  state = { toggle: true }
-  toggle = () => this.setState(state => ({ toggle: !state.toggle }))
+
+
+  constructor(props){
+    super(props)
+    this.state = {
+      toggle: true,
+      sort: '',
+      currentPage: 1
+    }
+  }
+  toggle = () => this.setState({ toggle: !this.state.toggle })
+  openToggle = () => this.setState({ toggle: false })
+  closeToggle = () => this.setState({ toggle: true })
   componentDidMount() {
     //setInterval(() => this.forceUpdate(), 1000)
   }
@@ -27,10 +39,19 @@ export default class Triangle extends React.Component {
     const yeye = <g>
       {
         toggle ? 
-        <text onClick={()=>console.log('oyo')} x={'123'} y={toggle ? "250" : "100"} font-family="Verdana" font-size="50" fill="white">{toggle ? 'Filters' : 'dsds'}</text> : (
+        <text onClick={this.openToggle} x='130' y='250' font-family="Verdana" font-size="50" fill="white" cursor='pointer'>Open</text> : (
           <g >
-          <rect fill="#daabff" stroke-width="0" y="0" x="20" height="20%" width='360'/>
-          <text onClick={()=>console.log('oyo')} x='30' y='150' font-family="Verdana" font-size="50" fill="white">{toggle ? 'Filters' : 'dsds'}</text>
+          <rect fill="#163f5f" stroke-width="0" y="0" x="20" height="20%" width='360'/>
+          <text onClick={()=>console.log('oyo')} x='30' y='150' cursor='pointer' font-family="Verdana" font-size="50" fill="white">Gini</text>
+          <rect onClick={this.closeToggle} fill="#20639b" stroke-width="0" y="0" x="20" height="20%" width='100' />
+          <path onClick={this.closeToggle} d="M 10,20 L 30,40 M 30,10 L 10,40" transform="translate(42,0) scale(1.5)" style={{
+              cursor: 'pointer',
+              stroke: 'white',
+              padding: 100,
+              fill: 'transparent',
+              strokeLinecap: 'round',
+              strokeWidth: 5
+          }} />
           </g>
           
         )
@@ -44,17 +65,18 @@ export default class Triangle extends React.Component {
         from={{ fill: 'black', top: 500 }}
         to={{
           opacity: toggle ? '0' : '1',
-          top: toggle ? '500' : '0',
+          top: toggle ? '-500' : '0',
           marginRight: toggle ? '0%' : '60%',
-          fill: toggle ? '#247BA0' : '#abe4ff',
-          backgroundColor: toggle ? '#A29B7F' : '#F3FFBD',
+          fill: toggle ? '#247BA0' : '#3daea3',
+          backgroundColor: toggle ? '#A29B7F' : '#f6d55c',
           rotate: toggle ? '0deg' : '360deg',
           scale: toggle ? 0.3 : 1,
-          shape: toggle ? TRIANGLE : RECTANGLE
+          shape: toggle ? TRIANGLE : RECTANGLE,
+          right: toggle ? '0' : '-500',
         }}
         toggle={this.toggle}
         onRest={() => console.log('done')}>
-        {({ toggle, backgroundColor, fill, rotate, scale, shape, marginRight, opacity, top }) => (
+        {({ toggle, backgroundColor, fill, rotate, scale, shape, marginRight, opacity, top, right }) => (
           <div style={{position:'relative'}}>
           <animated.div style={{ ...styles.container, backgroundColor }}>
             <animated.svg
@@ -70,16 +92,16 @@ export default class Triangle extends React.Component {
               version="1.1"
               viewBox="0 0 400 400">
               <g
-                style={{ cursor: 'pointer' }}
                 fillRule="evenodd"
-                onClick={this.toggle}>
+                onClick={ this.openToggle}>
                 
                 <animated.path id="path-1" d={shape} />
-                {yeye}
+                
               </g>
+              {yeye}
             </animated.svg>
           </animated.div>
-          <animated.div style={{ position: 'absolute', opacity, top, left: '40%' }}>
+          <animated.div style={{ position: 'absolute', opacity, top, left: '40%', right }}>
             <List list={this.props.list} />
           </animated.div>
           </div>
