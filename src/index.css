@@ -45,3 +45,12 @@ code {
   justify-content: space-around;
   cursor: pointer;
 }
+
+.disabledPagination {
+  color: #c4c4c4;
+}
+
+.hoverPagination:hover {
+  color: #3daea3;
+  cursor: pointer;
+}

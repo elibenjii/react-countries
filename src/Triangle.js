@@ -19,7 +19,6 @@ const styles = {
 
 export default class Triangle extends React.Component {
 
-
   constructor(props){
     super(props)
     this.state = {
@@ -28,17 +27,19 @@ export default class Triangle extends React.Component {
         arg: 'population',
         order: 'asc'
       },
-      currentPage: 1
+      currentPage: 1,
+      itemsPage: 20
     }
   }
   toggle = () => this.setState({ toggle: !this.state.toggle })
   openToggle = () => this.setState({ toggle: false })
   closeToggle = () => this.setState({ toggle: true })
-  _sortList = (arg, order) => this.setState({ sort: {arg, order} })
+  _sortList = (arg, order) => this.setState({ sort: {arg, order}, currentPage: 1 })
+  _handleChange = (key, value) => this.setState({ [key]: value })
 
 
   render() {
-    const {toggle, sort} = this.state
+    const {toggle, sort, currentPage, itemsPage} = this.state
     const yeye = <g>
       {
         toggle ? 
@@ -107,7 +108,7 @@ export default class Triangle extends React.Component {
             </animated.svg>
           </animated.div>
           <animated.div style={{ position: 'absolute', opacity, top, left: '40%', right }}>
-            <List list={this.props.list} sort={sort} />
+            <List list={this.props.list} sort={sort} currentPage={currentPage} itemsPage={itemsPage} _handleChange={this._handleChange} />
           </animated.div>
           </div>
 

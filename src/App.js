@@ -14,7 +14,7 @@ const App = () => {
 
   const _getList = async () => {
     const result = await axios('https://restcountries.eu/rest/v2/all');
-    setList(result.data);
+    setList(result.data.filter(x=>x.population >900 && x.gini !== null));
   }
 
   useEffect(() => {
