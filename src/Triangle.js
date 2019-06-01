@@ -3,6 +3,9 @@ import { Spring, animated, interpolate } from 'react-spring/renderprops'
 import GridPortfolio from './GridPortfolio'
 import List from './List'
 import { PropTypes } from 'prop-types';
+import {
+  isMobile
+} from "react-device-detect";
 
 const TRIANGLE = 'M20,380 L380,380 L380,380 L200,20 L20,380 Z'
 const RECTANGLE = 'M20,20 L20,380 L380,380 L380,20 L20,20 Z'
@@ -13,6 +16,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     willChange: 'background',
+    zIndex: 1
   },
   shape: { width: window.innerWidth	, height: window.innerHeight	, willChange: 'transform' },
 }
@@ -107,7 +111,7 @@ export default class Triangle extends React.Component {
               {yeye}
             </animated.svg>
           </animated.div>
-          <animated.div style={{ position: 'absolute', opacity, top, left: '40%', right }}>
+          <animated.div style={ isMobile ? { position: 'absolute', top, opacity, zIndex: 0}: { position: 'absolute', opacity, top, left: '40%', right }}>
             <List list={this.props.list} sort={sort} currentPage={currentPage} itemsPage={itemsPage} _handleChange={this._handleChange} />
           </animated.div>
           </div>
