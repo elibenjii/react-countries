@@ -24,25 +24,30 @@ export default class Triangle extends React.Component {
     super(props)
     this.state = {
       toggle: true,
-      sort: '',
+      sort: {
+        arg: 'population',
+        order: 'asc'
+      },
       currentPage: 1
     }
   }
   toggle = () => this.setState({ toggle: !this.state.toggle })
   openToggle = () => this.setState({ toggle: false })
   closeToggle = () => this.setState({ toggle: true })
-  componentDidMount() {
-    //setInterval(() => this.forceUpdate(), 1000)
-  }
+  _sortList = (arg, order) => this.setState({ sort: {arg, order} })
+
+
   render() {
-    const {toggle} = this.state
+    const {toggle, sort} = this.state
     const yeye = <g>
       {
         toggle ? 
         <text onClick={this.openToggle} x='130' y='250' font-family="Verdana" font-size="50" fill="white" cursor='pointer'>Open</text> : (
           <g >
           <rect fill="#163f5f" stroke-width="0" y="0" x="20" height="20%" width='360'/>
-          <text onClick={()=>console.log('oyo')} x='30' y='150' cursor='pointer' font-family="Verdana" font-size="50" fill="white">Gini</text>
+          <text onClick={()=>this._sortList('population', this.state.sort.order === 'asc' ? 'desc' : 'asc')} x='30' y='150' cursor='pointer' font-family="Verdana" font-size="50" fill="white">Population {sort.arg === 'population' ? sort.order === 'asc' ? '↑' : '↓' : ''}</text>
+          <text onClick={()=>this._sortList('name', this.state.sort.order === 'asc' ? 'desc' : 'asc')} x='30' y='250' cursor='pointer' font-family="Verdana" font-size="50" fill="white">Country {sort.arg === 'name' ? sort.order === 'asc' ? '↑' : '↓' : ''} </text>
+          <text onClick={()=>this._sortList('gini', this.state.sort.order === 'asc' ? 'desc' : 'asc')} x='30' y='350' cursor='pointer' font-family="Verdana" font-size="50" fill="white">Gini {sort.arg === 'gini' ? sort.order === 'asc' ? '↑' : '↓' : ''}</text>
           <rect onClick={this.closeToggle} fill="#20639b" stroke-width="0" y="0" x="20" height="20%" width='100' />
           <path onClick={this.closeToggle} d="M 10,20 L 30,40 M 30,10 L 10,40" transform="translate(42,0) scale(1.5)" style={{
               cursor: 'pointer',
@@ -102,7 +107,7 @@ export default class Triangle extends React.Component {
             </animated.svg>
           </animated.div>
           <animated.div style={{ position: 'absolute', opacity, top, left: '40%', right }}>
-            <List list={this.props.list} />
+            <List list={this.props.list} sort={sort} />
           </animated.div>
           </div>
 

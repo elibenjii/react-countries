@@ -15,16 +15,16 @@ const List = ({
 
 
 
-  return <div className='itemContainer'>
+  return <div className='itemContainer' onClick={()=>console.log(info)}>
   <div className='itemImage'>
     <img src={info.flag} style={{width:'90%' }} alt="Logo" />
   </div>
   <div style={{display: 'flex', position: 'relative', flex: 6, flexDirection: 'column', height: 100}} onClick={() => set(state => !state)}>
     <animated.div style={{ opacity: opacity.interpolate(o => 1 - o), transform }}>
-    <div className='itemInfoContainer' >
+    <div className='itemInfoContainer'>
       <div>country: <b>{info.name}</b>({info.nativeName})</div>
       <div>capital: <b>{info.capital}</b></div>
-      <div>gini: <b>{info.gini}</b></div>
+      <div>gini: <b>{info.gini === ''? 'null' : info.gini}</b></div>
       <div>population: <b>{info.population}</b></div>
     </div>
     </animated.div>
