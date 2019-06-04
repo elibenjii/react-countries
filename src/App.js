@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import Header from './Header'
-import Menu from './Menu'
-import List from './List'
 import Triangle from './Triangle'
 
 
