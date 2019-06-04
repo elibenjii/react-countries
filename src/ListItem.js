@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring'
 
 const List = ({
-  info
+  info,
+  textInput
 }) => {
 
   const [flipped, set] = useState(false)
@@ -17,7 +18,7 @@ const List = ({
 
   return <div className='itemContainer' onClick={()=>console.log(info)}>
   <div className='itemImage'>
-    <img src={info.flag} style={{width:'90%' }} alt="Logo" />
+    <img src={info.flag} style={{height:80, marginTop: 10, flex: 1, paddingRight: 15 }} alt="Logo" />
   </div>
   <div style={{display: 'flex', position: 'relative', flex: 6, flexDirection: 'column', height: 100}} onClick={() => set(state => !state)}>
     <animated.div style={{ opacity: opacity.interpolate(o => 1 - o), transform }}>

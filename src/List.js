@@ -7,17 +7,20 @@ const List = ({
   sort,
   currentPage,
   itemsPage,
-  _handleChange
+  _handleChange,
+  textInput
 }) => {
   const sortedList = () => {
-    console.log(list[0])
+    const sortBySearch = textInput.length > 0 ? 
+      list.filter(x=>x.name.toUpperCase().includes(textInput.toUpperCase())) : 
+      list
     switch(sort.arg) {
       case 'population':
-        return sort.order === 'asc' ? list.sort((a, b) => a.population - b.population) : list.sort((a, b) => b.population - a.population)
+        return sort.order === 'asc' ? sortBySearch.sort((a, b) => a.population - b.population) : sortBySearch.sort((a, b) => b.population - a.population)
       case 'gini':
-        return sort.order === 'asc' ? list.sort((a, b) => a.gini - b.gini) : list.sort((a, b) => b.gini - a.gini)
+        return sort.order === 'asc' ? sortBySearch.sort((a, b) => a.gini - b.gini) : sortBySearch.sort((a, b) => b.gini - a.gini)
       case 'name':
-        return sort.order === 'asc' ? list.sort((a, b) => a.name.localeCompare(b.name)) : list.sort((a, b) => b.name.localeCompare(a.name))
+        return sort.order === 'asc' ? sortBySearch.sort((a, b) => a.name.localeCompare(b.name)) : sortBySearch.sort((a, b) => b.name.localeCompare(a.name))
       default: return list
     }
   } 
@@ -32,16 +35,21 @@ const List = ({
           {currentPage-1} ➪
           </span>  
             <span style={{borderBottom: '3px solid white'}}> {currentPage} </span>
-          <span className={list.length-(currentPage*itemsPage) > currentPage ? 'hoverPagination' : 'disabledPagination'} onClick={()=>{list.length-(currentPage*itemsPage) > currentPage && _handleChange('currentPage', currentPage + 1)}}>
+          <span 
+          className={sortedList().length-(currentPage*itemsPage) > currentPage ? 'hoverPagination' : 'disabledPagination'} 
+          onClick={()=>{sortedList().length-(currentPage*itemsPage) > currentPage && _handleChange('currentPage', currentPage + 1)}}>
             ➪ {currentPage+1}
           </span>
+          <input className='inputStyle' 
+            onChange={(e)=>_handleChange('textInput', e.target.value)}
+          />
         </div>
       </div>
     
     <div className='listContainer' style={{height: window.innerHeight-75, backgroundColor: 'white'}}>
 
      {
-       sortedList().slice(itemsPage*currentPage-itemsPage, itemsPage*currentPage).map((x, index)=> index< 20 &&  <ListItem key={x.name} style={{backgroundColor: 'white'}} info={x} />)
+       sortedList().slice(itemsPage*currentPage-itemsPage, itemsPage*currentPage).map((x, index)=> index< 20 &&  <ListItem key={x.name} style={{backgroundColor: 'white'}} info={x} textInput={textInput} />)
      }
     </div>
     </div>
