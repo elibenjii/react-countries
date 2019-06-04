@@ -1,6 +1,5 @@
 import React from 'react'
 import { Spring, animated, interpolate } from 'react-spring/renderprops'
-import GridPortfolio from './GridPortfolio'
 import List from './List'
 import { PropTypes } from 'prop-types';
 import {
