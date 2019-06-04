@@ -12,7 +12,7 @@ const List = ({
 }) => {
   const sortedList = () => {
     const sortBySearch = textInput.length > 0 ? 
-      list.filter(x=>x.name.toUpperCase().includes(textInput.toUpperCase())) : 
+      list.filter(x=>x.name.toUpperCase().includes(textInput.toUpperCase()) || x.capital.toUpperCase().includes(textInput.toUpperCase())) : 
       list
     switch(sort.arg) {
       case 'population':
@@ -49,7 +49,7 @@ const List = ({
     <div className='listContainer' style={{height: window.innerHeight-75, backgroundColor: 'white'}}>
 
      {
-       sortedList().slice(itemsPage*currentPage-itemsPage, itemsPage*currentPage).map((x, index)=> index< 20 &&  <ListItem key={x.name} style={{backgroundColor: 'white'}} info={x} textInput={textInput} />)
+       sortedList().slice(itemsPage*currentPage-itemsPage, itemsPage*currentPage).map((x, index)=> <ListItem key={x.name} style={{backgroundColor: 'white'}} info={x} textInput={textInput} />)
      }
     </div>
     </div>
