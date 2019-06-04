@@ -14,7 +14,7 @@ const List = ({
   })
 
 
-
+  const highlight = (tohighlight) => tohighlight.split('').map(x=> textInput.toUpperCase().includes(x.toUpperCase()) ? <span style={{backgroundColor: 'rgb(61, 174, 163)', color:'white'}}>{x}</span> : <span>{x}</span>)
 
   return <div className='itemContainer' onClick={()=>console.log(info)}>
   <div className='itemImage'>
@@ -23,8 +23,8 @@ const List = ({
   <div style={{display: 'flex', position: 'relative', flex: 6, flexDirection: 'column', height: 100}} onClick={() => set(state => !state)}>
     <animated.div style={{ opacity: opacity.interpolate(o => 1 - o), transform }}>
     <div className='itemInfoContainer'>
-      <div>country: <b>{info.name}</b>({info.nativeName})</div>
-      <div>capital: <b>{info.capital}</b></div>
+      <div>country: <b>{highlight(info.name)}</b>({info.nativeName})</div>
+      <div>capital: <b>{highlight(info.capital)}</b></div>
       <div>gini: <b>{info.gini === ''? 'null' : info.gini}</b></div>
       <div>population: <b>{info.population}</b></div>
     </div>
