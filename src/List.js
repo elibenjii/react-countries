@@ -41,7 +41,7 @@ const List = ({
             ➪ {currentPage+1}
           </span>
           <input className='inputStyle' 
-            onChange={(e)=>_handleChange('textInput', e.target.value)}
+            onChange={(e)=>{_handleChange('textInput', e.target.value); _handleChange('currentPage', 1)}}
           />
         </div>
       </div>
