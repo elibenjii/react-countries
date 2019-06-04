@@ -75,7 +75,7 @@ export default class Triangle extends React.Component {
         from={{ fill: 'black', top: 500 }}
         to={{
           opacity: toggle ? '0' : '1',
-          top: toggle ? '-500' : '0',
+          top: toggle ? '-1000' : '0',
           marginRight: toggle ? '0%' : '60%',
           fill: toggle ? '#247BA0' : '#3daea3',
           backgroundColor: toggle ? '#A29B7F' : '#f6d55c',
@@ -88,12 +88,13 @@ export default class Triangle extends React.Component {
         onRest={() => console.log('done')}>
         {({ toggle, backgroundColor, fill, rotate, scale, shape, marginRight, opacity, top, right }) => (
           <div style={{position:'relative'}}>
-          <animated.div style={{ ...styles.container, backgroundColor }}>
+          <animated.div style={{ ...styles.container, backgroundColor}}>
             <animated.svg
               style={{
                 ...styles.shape,
                 fill,
                 marginRight,
+               
                 transform: interpolate(
                   [rotate, scale],
                   (r, s) => `rotate3d(0,1,0,${r}) scale(${s})`
@@ -105,7 +106,7 @@ export default class Triangle extends React.Component {
                 fillRule="evenodd"
                 onClick={ this.openToggle}>
                 
-                <animated.path id="path-1" d={shape} />
+                <animated.path id="path-1" d={shape} style={{ cursor:'pointer'}} />
                 
               </g>
               {yeye}
