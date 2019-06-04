@@ -19,11 +19,8 @@ const App = () => {
   })
 
 
-  return (
-    <div>
-      <Triangle list={list} />
-    </div>
-  );
+  return <Triangle list={list} />
+  
 }
 
 export default App
