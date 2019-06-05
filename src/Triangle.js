@@ -32,7 +32,8 @@ export default class Triangle extends React.Component {
       },
       currentPage: 1,
       itemsPage: 20,
-      textInput: ''
+      textInput: '',
+      bam: false
     }
   }
   toggle = () => this.setState({ toggle: !this.state.toggle })
@@ -43,7 +44,7 @@ export default class Triangle extends React.Component {
 
 
   render() {
-    const {toggle, sort, currentPage, itemsPage, textInput} = this.state
+    const {toggle, sort, currentPage, itemsPage, textInput, bam} = this.state
     const yeye = <g>
       {
         toggle ? 
@@ -113,7 +114,7 @@ export default class Triangle extends React.Component {
             </animated.svg>
           </animated.div>
           <animated.div style={ isMobile ? { position: 'absolute', top, opacity, zIndex: 0}: { position: 'absolute', opacity, top, left: '40%', right }}>
-            <List list={this.props.list} textInput={textInput} sort={sort} currentPage={currentPage} itemsPage={itemsPage} _handleChange={this._handleChange} />
+            <List bam={bam} list={this.props.list} textInput={textInput} sort={sort} currentPage={currentPage} itemsPage={itemsPage} _handleChange={this._handleChange} />
           </animated.div>
           </div>
 

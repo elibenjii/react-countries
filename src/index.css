@@ -26,6 +26,7 @@ code {
 .listContainer {
   padding: 30px;
   overflow-y: scroll;
+  z-index: 2;
 }
 
 .itemContainer {
@@ -56,7 +57,153 @@ code {
 }
 
 .inputStyle {
-  padding-left: 5px;
+  padding: 5px;
+  width:150px;
   margin-left: 15px;
   color: rgb(22, 62, 95);
+  font-size: 30px;
+  -webkit-appearance: none;
+  outline: none;
+  animation-name: inputBlur;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+@keyframes inputBlur {
+  from {
+    color: white;
+    background-color: rgb(32, 99, 155);
+    padding: 5px;
+    width: calc(100% - 250px);
+    margin-left: 15px;
+    font-size: 30px;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    border-radius: 100px
+  }
+  to {
+    color: rgb(22, 62, 95);
+    background-color: white;
+    padding: 5px;
+    width:150px;
+    margin-left: 15px;
+    color: rgb(22, 62, 95);
+    font-size: 30px;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+
+@keyframes inputFocus {
+  0% {
+    color: rgb(22, 62, 95);
+    background-color: white;
+    padding: 5px;
+    width:150px;
+    margin-left: 15px;
+    color: rgb(22, 62, 95);
+    font-size: 30px;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    border-radius: 100px;
+    transform: rotate(0deg);
+    margin-top: 0;
+  }
+  10% {
+    background-color: yellow;
+  }
+   30% {
+    transform: rotate(360deg);
+    background-color: orange;
+  }
+  70% {
+    color: white;
+    padding: 5px;
+    width: calc(100% - 250px);
+    margin-left: 15px;
+    font-size: 30px;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    border-radius: 60px;
+    width:35px;
+    margin-left: 305px;
+    background-color: rgb(255, 119, 0);
+    
+  }
+  80% {
+    color: white;
+    padding: 5px;
+    width: calc(100% - 250px);
+    margin-left: 15px;
+    font-size: 30px;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    transform: rotate(0deg);
+    background-color: rgb(201, 75, 7);
+  }
+  100% {
+    margin-top: 0;
+    color: white;
+    width:150px;
+    background-color: rgb(32, 99, 155);
+    padding: 5px;
+    width: calc(100% - 250px);
+    margin-left: 15px;
+    font-size: 30px;
+    -webkit-appearance: none;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+  }
+}
+
+.inputStyle:focus {
+  animation-name: inputFocus;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+}
+
+@keyframes trollAnim {
+  0% {
+    width: 0px;
+    opacity: 0;
+    top: -50px;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    transform: rotate(0deg);
+  }
+   70% {
+    opacity: 1;
+    top: -10px;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    transform: rotate(180deg);
+   }
+   100% {
+    opacity: 1;
+    top: -50px;
+    z-index: 1;
+    width: 50px;
+    height: 50px;
+    transform: rotate(360deg);
+   }
+}
+
+.troll {
+  animation-name: trollAnim;
+  animation-duration: 2s;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -50px;
 }
