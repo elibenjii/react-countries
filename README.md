@@ -2,7 +2,7 @@
 
 ## DEMO
 
-[Click me - DEMO](https://countries-389d9.firebaseapp.com/)
+[Click me - DEMO](https://countries-389d9.firebaseapp.com/) <br />
 Goal: find the troll
 
 ![screenshot1](https://countries-389d9.firebaseapp.com/screenshot-1.png)
