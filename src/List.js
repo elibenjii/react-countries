@@ -8,7 +8,8 @@ const List = ({
   currentPage,
   itemsPage,
   _handleChange,
-  textInput
+  textInput,
+  bam
 }) => {
   const sortedList = () => {
     const sortBySearch = textInput.length > 0 ? 
@@ -27,6 +28,9 @@ const List = ({
 
   return (
     <div>
+      {
+        bam && <img className='troll' src={require('./assets/troll.png')} />
+      }
       <div style={{backgroundColor: '#163f5f', height: '75px'}}>
         <div style={{fontSize: 30, color: 'white', fontWeight: 'bold', padding: 10 }}>
           Page: <span 
@@ -41,6 +45,8 @@ const List = ({
             ➪ {currentPage+1}
           </span>
           <input className='inputStyle' 
+            onClick={()=>_handleChange('bam', true)}
+            onBlur={()=>_handleChange('bam', false)}
             onChange={(e)=>{_handleChange('textInput', e.target.value); _handleChange('currentPage', 1)}}
           />
         </div>
