@@ -52,7 +52,7 @@ const List = ({
         </div>
       </div>
     
-    <div className='listContainer' style={{height: window.innerHeight-75, backgroundColor: 'white'}}>
+    <div className='listContainer' style={{height: window.innerHeight-135, backgroundColor: 'white'}}>
 
      {
        sortedList().slice(itemsPage*currentPage-itemsPage, itemsPage*currentPage).map((x, index)=> <ListItem key={x.name} style={{backgroundColor: 'white'}} info={x} textInput={textInput} />)
