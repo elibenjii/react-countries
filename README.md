@@ -16,5 +16,5 @@ Goal: find the troll
 
 ## Deployment
 
-Firebase: firebase init, firebase deploy
+Firebase: firebase init, firebase deploy <br />
 Heroku: git push heroku master
